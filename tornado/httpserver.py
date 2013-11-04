@@ -290,7 +290,7 @@ class HTTPConnection(object):
     def _on_headers(self, data):
         try:
             try:
-                data = native_str(data.decode('latin-1'))
+                data = native_str(data.decode('latin1'))
             except LookupError, err:
                 data = native_str(data)
             eol = data.find("\r\n")
