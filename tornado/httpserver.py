@@ -289,7 +289,10 @@ class HTTPConnection(object):
 
     def _on_headers(self, data):
         try:
-            data = native_str(data.decode('latin1', 'ignore'))
+            try:
+                data = native_str(data.decode('latin-1'))
+            except LookupError, err:
+                data = native_str(data)
             eol = data.find("\r\n")
             start_line = data[:eol]
             try:
